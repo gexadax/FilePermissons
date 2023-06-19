@@ -1,3 +1,32 @@
+#include "User.h"
+#include "Message.h"
+
+std::vector<User> load_users(const std::string& file_name) {
+    std::vector<User> users;
+    std::fstream ifs(file_name, std::ios::binary | std::ios::in);
+    if (ifs.good()) {
+        User user("", "", "");
+        while (ifs >> user) {
+            users.push_back(user);
+        }
+        ifs.close();
+    }
+    return users;
+}
+
+std::vector<Message> load_messages(const std::string& file_name) {
+    std::vector<Message> messages;
+    std::fstream ifs(file_name, std::ios::binary | std::ios::in);
+    if (ifs.good()) {
+        Message message("", "", "");
+        while (ifs >> message) {
+            messages.push_back(message);
+        }
+        ifs.close();
+    }
+    return messages;
+}
+
 int main()
 {
     const std::string user_file_name = "users.dat";
